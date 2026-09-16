@@ -148,6 +148,14 @@ class MainActivity : ComponentActivity() {
         isInPip.value = inPip
     }
 
+    override fun onKeyDown(keyCode: Int, event: android.view.KeyEvent?): Boolean {
+        if (keyCode == android.view.KeyEvent.KEYCODE_BACK) {
+            finish()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
     override fun onStop() {
         super.onStop()
         // never stop mid-session

@@ -12,12 +12,12 @@ val localProps = Properties().apply {
     rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use(::load)
 }
 
-val allAbis = listOf("arm64-v8a", "armeabi-v7a", "x86_64")
+val allAbis = listOf("armeabi-v7a")
 
 android {
     namespace = "io.github.jqssun.airplay"
     compileSdk = 36
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "27.1.12297006"
 
     if (localProps.containsKey("storeFile")) {
         signingConfigs {
@@ -31,7 +31,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "io.github.jqssun.airplay"
+        applicationId = "local.kutu.mirror"
         minSdk = 24
         targetSdk = 36
         versionCode = 31

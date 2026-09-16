@@ -330,13 +330,10 @@ class AirPlayService : LifecycleService(), RaopCallbackHandler, LogListener {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent?.action == ACTION_START_SERVER) {
-            promoteToForeground()
-            val name = prefs.getString(Prefs.SERVER_NAME, Prefs.DEF_SERVER_NAME) ?: Prefs.DEF_SERVER_NAME
-            startServer(name, ensureServiceStarted = false)
-            if (_serverState.value != ServerState.RUNNING) stopSelf(startId)
-        }
-        return START_NOT_STICKY
+        promoteToForeground()
+        val name = prefs.getString(Prefs.SERVER_NAME, Prefs.DEF_SERVER_NAME) ?: Prefs.DEF_SERVER_NAME
+        startServer(name, ensureServiceStarted = false)
+        return START_STICKY
     }
 
     fun startServer(name: String) {
@@ -714,12 +711,7 @@ class AirPlayService : LifecycleService(), RaopCallbackHandler, LogListener {
         val firstConnection = _connectionCount.value == 0
         _connectionCount.value++
         log("Client connected (${_connectionCount.value})")
-        if (!firstConnection) return
-        // conn_init is only a tcp pre-auth signal. pin-required sessions must wait for
-        // onDisplayPin, otherwise the server ui can move before the client pin is current
-        if (requiresPin()) return
-        if (!shouldLaunchOnConnect()) return
-        launchMainActivity()
+        // Passive connection only - do not launch UI on bare TCP connection or port probe.
     }
 
     override fun onConnectionDestroy() {
@@ -807,7 +799,12 @@ class AirPlayService : LifecycleService(), RaopCallbackHandler, LogListener {
     }
 
     override fun onMirrorRunning(running: Boolean) {
-        if (running) videoRenderer.startSession() else {
+        if (running) {
+            videoRenderer.startSession()
+            if (shouldLaunchOnConnect()) {
+                launchMainActivity()
+            }
+        } else {
             videoRenderer.stopSession()
             _mirroringActive.value = false
         }

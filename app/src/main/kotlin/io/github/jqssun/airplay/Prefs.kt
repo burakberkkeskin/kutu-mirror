@@ -7,17 +7,17 @@ object Prefs {
     const val NAME = "settings"
     const val AUTO = "auto"; const val ON = "on"; const val OFF = "off"
 
-    const val SERVER_NAME = "server_name"; const val DEF_SERVER_NAME = "Android AirPlay"
+    const val SERVER_NAME = "server_name"; const val DEF_SERVER_NAME = "Kutu"
     const val FALLBACK_MAC_ADDRESS = "fallback_mac_address"
     const val SERVER_PORT = "server_port"; const val DEF_SERVER_PORT = 7000
     const val AUTO_START = "auto_start"; const val DEF_AUTO_START = true
     const val BOOT_AUTO_START = "boot_auto_start"; const val DEF_BOOT_AUTO_START = true
     const val RUN_IN_BACKGROUND = "run_in_background"; const val DEF_RUN_IN_BACKGROUND = true
-    const val H265_ENABLED = "h265_enabled"; const val DEF_H265_ENABLED = true
+    const val H265_ENABLED = "h265_enabled"; const val DEF_H265_ENABLED = false
     const val ENFORCE_SDR = "enforce_sdr"; const val DEF_ENFORCE_SDR = true
     val KEY_ALLOW_FRAME_DROP: String = MediaFormat.KEY_ALLOW_FRAME_DROP; const val DEF_KEY_ALLOW_FRAME_DROP = true
     val KEY_PRIORITY: String = MediaFormat.KEY_PRIORITY; const val DEF_KEY_PRIORITY = true
-    const val LOW_LATENCY = "low_latency"; const val DEF_LOW_LATENCY = false
+    const val LOW_LATENCY = "low_latency"; const val DEF_LOW_LATENCY = true
     const val OPERATING_RATE = "operating_rate"; const val DEF_OPERATING_RATE = AUTO
     const val SCHEDULED_OUTPUT_BUFFER_RELEASE = "scheduled_output_buffer_release"; const val DEF_SCHEDULED_OUTPUT_BUFFER_RELEASE = false
     const val AUDIO_AUTO_BUFFER = "audio_auto_buffer"; const val DEF_AUDIO_AUTO_BUFFER = true
@@ -31,7 +31,7 @@ object Prefs {
     const val ALAC_ENABLED = "alac_enabled"; const val DEF_ALAC_ENABLED = false
     const val FORCE_SW_ALAC = "force_sw_alac"; const val DEF_FORCE_SW_ALAC = true
     const val AAC_ENABLED = "aac_enabled"; const val DEF_AAC_ENABLED = true
-    const val RESOLUTION = "resolution"; const val DEF_RESOLUTION = AUTO
+    const val RESOLUTION = "resolution"; const val DEF_RESOLUTION = "1920x1080"
     const val MAX_FPS = "max_fps"; const val DEF_MAX_FPS = 60
     const val OVERSCANNED = "overscanned"; const val DEF_OVERSCANNED = false
     const val REQUIRE_PIN = "require_pin"; const val DEF_REQUIRE_PIN = false

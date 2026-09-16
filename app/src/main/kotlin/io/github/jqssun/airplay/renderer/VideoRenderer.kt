@@ -33,7 +33,7 @@ class VideoRenderer(ctx: Context) {
 
     var enforceSdr = true
     var keyAllowFrameDrop = true
-    var scheduledOutputBufferRelease = true
+    var scheduledOutputBufferRelease = false
     var benchmarkLog = false
     var benchmarkLogCallback: ((String) -> Unit)? = null
     private var _framesThisSec = 0
